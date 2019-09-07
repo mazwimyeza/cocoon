@@ -46,7 +46,7 @@ public class Campaign {
 	@Positive
 	private int engagements;
 	
-	@DBRef
+	@DBRef(lazy = true)
 	private List<Profile> profiles;
 	
 
