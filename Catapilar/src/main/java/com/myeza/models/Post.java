@@ -1,53 +1,43 @@
 package com.myeza.models;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@Document(collection = "campaigns")
+@Document(collection = "posts")
 @Data
 @AllArgsConstructor
-public class Campaign {
-	
+public class Post {
+
 	@Id
 	private String id;
 	
-	@Indexed(unique = true)
 	@NotBlank
-	private final String tagline;
-	
-	@CreatedDate
-	@PastOrPresent
-	@Field("date_created")
-	@DateTimeFormat(iso = ISO.DATE_TIME)
-	private final Date firstOccurance;
-	
+	@Size(min=10, max=400)
+	private final String text;
 	
 	@PastOrPresent
-	@Field("date_ended")
 	@DateTimeFormat(iso = ISO.DATE_TIME)
-	private Date lastOccurance;
+	private final Date createAt;
 	
-	@Positive
-	private int engagements;
+	@DBRef(lazy = true)
+	private Campaign campaign;
 	
-	@DBRef
-	private List<Profile> profiles;
+	@PositiveOrZero
+	private int endorsement;
 	
-
+	
+	
 }
