@@ -47,7 +47,7 @@ public class Campaign {
 	private int engagements;
 	
 	@DBRef(lazy = true)
-	private List<Profile> profiles;
+	private Profile owner;
 	
 
 }

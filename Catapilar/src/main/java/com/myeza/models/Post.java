@@ -1,6 +1,7 @@
 package com.myeza.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
@@ -33,11 +34,13 @@ public class Post {
 	private final Date createAt;
 	
 	@DBRef(lazy = true)
-	private Campaign campaign;
+	private List<Campaign> campaign;
 	
 	@PositiveOrZero
 	private int endorsement;
 	
+	@PositiveOrZero
+	private int engagement;
 	
 	
 }
