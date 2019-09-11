@@ -25,9 +25,6 @@ public interface ProfileService {
 	
 	// Platform services
 	
-	Mono<Platform> findPlatformByName(String name);
-	
-	Flux<Platform> findPlatforms();
 	
 	// Campaign services
 	

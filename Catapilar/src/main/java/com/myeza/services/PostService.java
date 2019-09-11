@@ -1,9 +1,7 @@
 package com.myeza.services;
 
 import java.util.Date;
-import java.util.List;
 
-import com.myeza.models.Campaign;
 import com.myeza.models.Post;
 
 import reactor.core.publisher.Flux;
@@ -13,13 +11,15 @@ public interface PostService {
 
 	Mono<Post> save(Post post);
 	
-	Flux<Post> getPostsByEndorsement();
+	Flux<Post> findAllOrderByEndorsementDesc();
 	
-	Flux<Post> getPostsByEngagement();
+	Flux<Post> findAllOrderByEngagementDesc();
 	
-	Flux<Post> getPostsFromDate(Date date);
+	Flux<Post> findAllByDateFrom(Date date);
 	
-	Flux<Post> getPostBeforeDate(Date date);
+	Flux<Post> findAllByDateBefore(Date date);
+	
+	Flux<Post> findAllByDateBetween(Date date1, Date date2);
 	
 	// TODO add aggregate functions...
 }

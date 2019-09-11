@@ -35,7 +35,7 @@ public class Campaign {
 	@PastOrPresent
 	@Field("date_created")
 	@DateTimeFormat(iso = ISO.DATE_TIME)
-	private final Date firstOccurance;
+	private Date firstOccurance;
 	
 	
 	@PastOrPresent
@@ -47,7 +47,7 @@ public class Campaign {
 	private int engagements;
 	
 	@DBRef(lazy = true)
-	private Profile owner;
+	private List<Profile> owners;
 	
 
 }

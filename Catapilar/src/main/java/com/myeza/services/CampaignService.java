@@ -13,6 +13,8 @@ public interface CampaignService {
 	
 	Mono<Campaign> save(Campaign campaign);
 	
+	Mono<Campaign> update(Campaign campaign);
+	
 	Mono<Campaign> findCampaignByName(String name);
 	
 	Flux<Campaign> findCampaigns();
