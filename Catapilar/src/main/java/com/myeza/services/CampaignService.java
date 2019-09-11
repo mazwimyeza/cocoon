@@ -1,10 +1,9 @@
 package com.myeza.services;
 
-import java.util.Date;
+import java.time.Instant;
 
 import com.myeza.models.Campaign;
 import com.myeza.models.Post;
-import com.myeza.models.Profile;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -27,9 +26,9 @@ public interface CampaignService {
 	
 	Flux<Campaign> findCampaignByDateDescending();
 	
-	Flux<Campaign> findCampaignsAfterDate(Date date);
+	Flux<Campaign> findCampaignsAfterDate(Instant date);
 	
-	Flux<Campaign> findCampaignsBeforeDate(Date date);
+	Flux<Campaign> findCampaignsBeforeDate(Instant date);
 	
 	// TODO insert post services
 	
@@ -37,9 +36,9 @@ public interface CampaignService {
 	
 	Flux<Post> getPostsByEngagement();
 	
-	Flux<Post> getPostsFromDate(Date date);
+	Flux<Post> getPostsFromDate(Instant date);
 	
-	Flux<Post> getPostBeforeDate(Date date);
+	Flux<Post> getPostBeforeDate(Instant date);
 	
 	// TODO add aggregate functions...
 	

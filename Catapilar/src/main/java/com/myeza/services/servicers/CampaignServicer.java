@@ -1,6 +1,6 @@
 package com.myeza.services.servicers;
 
-import java.util.Date;
+import java.time.Instant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -33,11 +33,11 @@ public class CampaignServicer implements CampaignService {
 		return campaignRepo.findById(campaign.getId())
 				.map(oldCampaign -> {
 					if(campaign.getFirstOccurance() != null) {
-						if(campaign.getFirstOccurance().before(oldCampaign.getFirstOccurance())) {
+						if(campaign.getFirstOccurance().isBefore(oldCampaign.getFirstOccurance())) {
 							oldCampaign.setFirstOccurance(campaign.getFirstOccurance());
 						}
 						else {
-							if(oldCampaign.getLastOccurance() == null || (oldCampaign.getLastOccurance().before(campaign.getFirstOccurance()))) {
+							if(oldCampaign.getLastOccurance() == null || (oldCampaign.getLastOccurance().isBefore(campaign.getFirstOccurance()))) {
 								oldCampaign.setLastOccurance(campaign.getFirstOccurance());
 							}
 						}
@@ -88,13 +88,13 @@ public class CampaignServicer implements CampaignService {
 	}
 
 	@Override
-	public Flux<Campaign> findCampaignsAfterDate(Date date) {
+	public Flux<Campaign> findCampaignsAfterDate(Instant date) {
 		// TODO Auto-generated method stub
 		return campaignRepo.findAllByDateFrom(date);
 	}
 
 	@Override
-	public Flux<Campaign> findCampaignsBeforeDate(Date date) {
+	public Flux<Campaign> findCampaignsBeforeDate(Instant date) {
 		// TODO Auto-generated method stub
 		return campaignRepo.findAllByDateBefore(date);
 	}
@@ -112,13 +112,13 @@ public class CampaignServicer implements CampaignService {
 	}
 
 	@Override
-	public Flux<Post> getPostsFromDate(Date date) {
+	public Flux<Post> getPostsFromDate(Instant date) {
 		// TODO Auto-generated method stub
 		return postService.findAllByDateFrom(date);
 	}
 
 	@Override
-	public Flux<Post> getPostBeforeDate(Date date) {
+	public Flux<Post> getPostBeforeDate(Instant date) {
 		// TODO Auto-generated method stub
 		return postService.findAllByDateBefore(date);
 	}

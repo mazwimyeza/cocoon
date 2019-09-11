@@ -1,6 +1,6 @@
 package com.myeza.services.servicers;
 
-import java.util.Date;
+import java.time.Instant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -93,13 +93,13 @@ public class ProfileServicer implements ProfileService{
 	}
 
 	@Override
-	public Flux<Campaign> findCampaignsAfterDate(Date date) {
+	public Flux<Campaign> findCampaignsAfterDate(Instant date) {
 		// TODO Auto-generated method stub
 		return campaignService.findCampaignsAfterDate(date);
 	}
 
 	@Override
-	public Flux<Campaign> findCampaignsBeforeDate(Date date) {
+	public Flux<Campaign> findCampaignsBeforeDate(Instant date) {
 		// TODO Auto-generated method stub
 		
 		return campaignService.findCampaignsBeforeDate(date);

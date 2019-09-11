@@ -1,6 +1,6 @@
 package com.myeza.services.servicers;
 
-import java.util.Date;
+import java.time.Instant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -35,19 +35,19 @@ public class PostServicer implements PostService {
 	}
 
 	@Override
-	public Flux<Post> findAllByDateFrom(Date date) {
+	public Flux<Post> findAllByDateFrom(Instant date) {
 		
 		return postRepo.findAllByDateFrom(date);
 	}
 
 	@Override
-	public Flux<Post> findAllByDateBefore(Date date) {
+	public Flux<Post> findAllByDateBefore(Instant date) {
 		
 		return postRepo.findAllByDateBefore(date);
 	}
 
 	@Override
-	public Flux<Post> findAllByDateBetween(Date date1, Date date2) {
+	public Flux<Post> findAllByDateBetween(Instant date1, Instant date2) {
 		
 		return postRepo.findAllByDateBetween(date1, date2);
 	}

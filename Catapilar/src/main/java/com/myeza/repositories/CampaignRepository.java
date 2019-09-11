@@ -1,6 +1,6 @@
 package com.myeza.repositories;
 
-import java.util.Date;
+import java.time.Instant;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
@@ -19,8 +19,8 @@ public interface CampaignRepository extends ReactiveMongoRepository<Campaign, St
 
 	Flux<Campaign> findAllOrderByLastOccurance();
 
-	Flux<Campaign> findAllByDateFrom(Date date);
+	Flux<Campaign> findAllByDateFrom(Instant date);
 
-	Flux<Campaign> findAllByDateBefore(Date date);
+	Flux<Campaign> findAllByDateBefore(Instant date);
 
 }

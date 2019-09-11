@@ -1,6 +1,7 @@
 package com.myeza.models;
 
-import java.util.Date;
+
+import java.time.Instant;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
@@ -34,14 +35,14 @@ public class Campaign {
 	@CreatedDate
 	@PastOrPresent
 	@Field("date_created")
-	@DateTimeFormat(iso = ISO.DATE_TIME)
-	private Date firstOccurance;
+	@DateTimeFormat(iso = ISO.DATE)
+	private Instant firstOccurance;
 	
 	
 	@PastOrPresent
 	@Field("date_ended")
-	@DateTimeFormat(iso = ISO.DATE_TIME)
-	private Date lastOccurance;
+	@DateTimeFormat(iso = ISO.DATE)
+	private Instant lastOccurance;
 	
 	@Positive
 	private int engagements;

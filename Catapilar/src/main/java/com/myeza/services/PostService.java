@@ -1,6 +1,6 @@
 package com.myeza.services;
 
-import java.util.Date;
+import java.time.Instant;
 
 import com.myeza.models.Post;
 
@@ -15,11 +15,11 @@ public interface PostService {
 	
 	Flux<Post> findAllOrderByEngagementDesc();
 	
-	Flux<Post> findAllByDateFrom(Date date);
+	Flux<Post> findAllByDateFrom(Instant date);
 	
-	Flux<Post> findAllByDateBefore(Date date);
+	Flux<Post> findAllByDateBefore(Instant date);
 	
-	Flux<Post> findAllByDateBetween(Date date1, Date date2);
+	Flux<Post> findAllByDateBetween(Instant date1, Instant date2);
 	
 	// TODO add aggregate functions...
 }
