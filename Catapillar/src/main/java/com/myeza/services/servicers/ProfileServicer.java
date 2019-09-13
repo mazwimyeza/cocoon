@@ -43,6 +43,11 @@ public class ProfileServicer implements ProfileService{
 				   return oldProfile;
 			   }).flatMap(this::save);
 	}
+	
+	@Override
+	public Mono<Profile> findById(String id){
+		return profileRepo.findById(id);
+	}
 
 	@Override
 	public Flux<Profile> findAll() {

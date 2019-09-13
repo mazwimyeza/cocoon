@@ -39,6 +39,8 @@ public interface ProfileService {
 	Flux<Campaign> findCampaignsAfterDate(Instant date);
 	
 	Flux<Campaign> findCampaignsBeforeDate(Instant date);
+
+	Mono<Profile> findById(String id);
 	
 	
 
