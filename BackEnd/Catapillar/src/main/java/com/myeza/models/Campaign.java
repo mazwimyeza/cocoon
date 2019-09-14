@@ -1,6 +1,6 @@
 package com.myeza.models;
 
-
+import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 
@@ -24,31 +24,36 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Campaign {
-	
+
 	@Id
 	private String id;
-	
+
 	@Indexed(unique = true)
 	@NotBlank
 	private final String tagline;
-	
+
 	@CreatedDate
 	@PastOrPresent
 	@Field("date_created")
 	@DateTimeFormat(iso = ISO.DATE)
 	private Instant firstOccurance;
-	
-	
+
 	@PastOrPresent
 	@Field("date_ended")
 	@DateTimeFormat(iso = ISO.DATE)
 	private Instant lastOccurance;
-	
+
+	private Duration duration;
+
 	@Positive
 	private int engagements;
-	
+
 	@DBRef(lazy = true)
 	private List<Profile> owners;
-	
+
+	public Duration getDuration() {
+		duration = Duration.between(firstOccurance, lastOccurance);
+		return duration;
+	}
 
 }

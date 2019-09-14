@@ -62,52 +62,114 @@ public class ProfileServicer implements ProfileService{
 
 
 	@Override
-	public Mono<Campaign> findCampaignByName(String name) {
+	public Mono<Campaign> findProfileCampaignByName(String profileId,String name) {
 		// TODO Auto-generated method stub
-		return campaignService.findCampaignByName(name);
+		return campaignService.findCampaignByName(name).filter(campaign -> {
+			for(Profile profile : campaign.getOwners()) {
+				if(profile.getId().equalsIgnoreCase(profileId)) {
+					return true;
+				}
+			}
+			return false;
+		});
 	}
 
 	@Override
-	public Flux<Campaign> findCampaigns() {
+	public Flux<Campaign> findProfileCampaigns(String profileId) {
 		// TODO Auto-generated method stub
-		return campaignService.findCampaigns();
+		return campaignService.findCampaigns().filter(campaign -> {
+			for(Profile profile : campaign.getOwners()) {
+				if(profile.getId().equalsIgnoreCase(profileId)) {
+					return true;
+				}
+			}
+			return false;
+		});
 	}
 
 	@Override
-	public Flux<Campaign> findCampaignsByDateAscending() {
+	public Flux<Campaign> findProfileCampaignsByDateAscending(String profileId) {
 		// TODO Auto-generated method stub
-		return campaignService.findCampaignsByDateAscending();
+		return campaignService.findCampaignsByDateAscending()
+				.filter(campaign -> {
+					for(Profile profile : campaign.getOwners()) {
+						if(profile.getId().equalsIgnoreCase(profileId)) {
+							return true;
+						}
+					}
+					return false;
+				});
 	}
 
 	@Override
-	public Flux<Campaign> findCampaignsByEngagement() {
+	public Flux<Campaign> findProfileCampaignsByEngagement(String profileId) {
 		// TODO Auto-generated method stub
-		return campaignService.findCampaignsByEngagement();
+		return campaignService.findCampaignsByEngagement()
+				.filter(campaign -> {
+					for(Profile profile : campaign.getOwners()) {
+						if(profile.getId().equalsIgnoreCase(profileId)) {
+							return true;
+						}
+					}
+					return false;
+				});
 	}
 
 	@Override
-	public Flux<Campaign> findCampaignsByAge() {
+	public Flux<Campaign> findProfileCampaignsByAge(String profileId) {
 		// TODO Auto-generated method stub
-		return campaignService.findCampaignsByAge();
+		return campaignService.findCampaignsByAge()
+				.filter(campaign -> {
+					for(Profile profile : campaign.getOwners()) {
+						if(profile.getId().equalsIgnoreCase(profileId)) {
+							return true;
+						}
+					}
+					return false;
+				});
 	}
 
 	@Override
-	public Flux<Campaign> findCampaignByDateDescending() {
+	public Flux<Campaign> findProfileCampaignByDateDescending(String profileId) {
 		// TODO Auto-generated method stub
-		return campaignService.findCampaignByDateDescending();
+		return campaignService.findCampaignByDateDescending()
+				.filter(campaign -> {
+					for(Profile profile : campaign.getOwners()) {
+						if(profile.getId().equalsIgnoreCase(profileId)) {
+							return true;
+						}
+					}
+					return false;
+				});
 	}
 
 	@Override
-	public Flux<Campaign> findCampaignsAfterDate(Instant date) {
+	public Flux<Campaign> findProfileCampaignsAfterDate(String profileId,Instant date) {
 		// TODO Auto-generated method stub
-		return campaignService.findCampaignsAfterDate(date);
+		return campaignService.findCampaignsAfterDate(date)
+				.filter(campaign -> {
+					for(Profile profile : campaign.getOwners()) {
+						if(profile.getId().equalsIgnoreCase(profileId)) {
+							return true;
+						}
+					}
+					return false;
+				});
 	}
 
 	@Override
-	public Flux<Campaign> findCampaignsBeforeDate(Instant date) {
+	public Flux<Campaign> findProfileCampaignsBeforeDate(String profileId, Instant date) {
 		// TODO Auto-generated method stub
 		
-		return campaignService.findCampaignsBeforeDate(date);
+		return campaignService.findCampaignsBeforeDate(date)
+				.filter(campaign -> {
+					for(Profile profile : campaign.getOwners()) {
+						if(profile.getId().equalsIgnoreCase(profileId)) {
+							return true;
+						}
+					}
+					return false;
+				});
 	}
 
 }

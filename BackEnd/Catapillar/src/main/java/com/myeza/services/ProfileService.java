@@ -15,6 +15,8 @@ public interface ProfileService {
 
 	Mono<Profile> updateProfile(Profile profile);
 	
+	Mono<Profile> findById(String id);
+	
 	Flux<Profile> findAll();
 	
 	Flux<Profile> findByName(String name);
@@ -24,23 +26,23 @@ public interface ProfileService {
 	
 	// Campaign services
 	
-	Mono<Campaign> findCampaignByName(String name);
+	Mono<Campaign> findProfileCampaignByName(String profileId,String name);
 	
-	Flux<Campaign> findCampaigns();
+	Flux<Campaign> findProfileCampaigns(String profileId);
 	
-	Flux<Campaign> findCampaignsByDateAscending();
+	Flux<Campaign> findProfileCampaignsByDateAscending(String profileId);
 	
-	Flux<Campaign> findCampaignsByEngagement();
+	Flux<Campaign> findProfileCampaignsByEngagement(String profileId);
 	
-	Flux<Campaign> findCampaignsByAge();
+	Flux<Campaign> findProfileCampaignsByAge(String profileId);
 	
-	Flux<Campaign> findCampaignByDateDescending();
+	Flux<Campaign> findProfileCampaignByDateDescending(String profileId);
 	
-	Flux<Campaign> findCampaignsAfterDate(Instant date);
+	Flux<Campaign> findProfileCampaignsAfterDate(String profileId, Instant date);
 	
-	Flux<Campaign> findCampaignsBeforeDate(Instant date);
+	Flux<Campaign> findProfileCampaignsBeforeDate(String profileId, Instant date);
 
-	Mono<Profile> findById(String id);
+	
 	
 	
 

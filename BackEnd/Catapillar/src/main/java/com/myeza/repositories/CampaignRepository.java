@@ -23,4 +23,6 @@ public interface CampaignRepository extends ReactiveMongoRepository<Campaign, St
 
 	Flux<Campaign> findAllByDateBefore(Instant date);
 
+	Flux<Campaign> findAllByDurationDesc();
+
 }

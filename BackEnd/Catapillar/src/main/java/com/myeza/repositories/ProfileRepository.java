@@ -10,5 +10,6 @@ import reactor.core.publisher.Mono;
 public interface ProfileRepository extends ReactiveMongoRepository<Profile, String> {
 
 	Flux<Profile> findByName(String name);
+	Mono<Profile> findById(String id);
 
 }

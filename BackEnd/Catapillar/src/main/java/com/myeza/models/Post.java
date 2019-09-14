@@ -34,7 +34,7 @@ public class Post {
 	private final Instant createAt;
 	
 	@DBRef(lazy = true)
-	private List<Campaign> campaign;
+	private List<Campaign> campaigns;
 	
 	@PositiveOrZero
 	private int endorsement;

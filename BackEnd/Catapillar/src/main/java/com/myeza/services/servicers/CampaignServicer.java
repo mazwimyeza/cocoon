@@ -78,7 +78,7 @@ public class CampaignServicer implements CampaignService {
 	@Override
 	public Flux<Campaign> findCampaignsByAge() {
 		// TODO Auto-generated method stub
-		return null;
+		return campaignRepo.findAllByDurationDesc();
 	}
 
 	@Override
@@ -100,27 +100,59 @@ public class CampaignServicer implements CampaignService {
 	}
 
 	@Override
-	public Flux<Post> getPostsByEndorsement() {
+	public Flux<Post> getCampaignPostsByEndorsement(String campaignId) {
 		// TODO Auto-generated method stub
-		return postService.findAllOrderByEndorsementDesc();
+		return postService.findAllOrderByEndorsementDesc()
+				.filter(post -> {
+					for(Campaign campaign : post.getCampaigns()) {
+						if(campaign.getId().equalsIgnoreCase(campaignId)) {
+							return true;
+						}
+					}
+					return false;
+				});
 	}
 
 	@Override
-	public Flux<Post> getPostsByEngagement() {
+	public Flux<Post> getCampaignPostsByEngagement(String campaignId) {
 		// TODO Auto-generated method stub
-		return postService.findAllOrderByEngagementDesc();
+		return postService.findAllOrderByEngagementDesc()
+				.filter(post -> {
+					for(Campaign campaign : post.getCampaigns()) {
+						if(campaign.getId().equalsIgnoreCase(campaignId)) {
+							return true;
+						}
+					}
+					return false;
+				});
 	}
 
 	@Override
-	public Flux<Post> getPostsFromDate(Instant date) {
+	public Flux<Post> getCampaignPostsFromDate(String campaignId, Instant date) {
 		// TODO Auto-generated method stub
-		return postService.findAllByDateFrom(date);
+		return postService.findAllByDateFrom(date)
+				.filter(post -> {
+					for(Campaign campaign : post.getCampaigns()) {
+						if(campaign.getId().equalsIgnoreCase(campaignId)) {
+							return true;
+						}
+					}
+					return false;
+				});
 	}
 
 	@Override
-	public Flux<Post> getPostBeforeDate(Instant date) {
+	public Flux<Post> getCampaignPostBeforeDate(String campaignId, Instant date) {
 		// TODO Auto-generated method stub
-		return postService.findAllByDateBefore(date);
+		return postService.findAllByDateBefore(date)
+				.filter(post -> {
+					for(Campaign campaign : post.getCampaigns()) {
+						if(campaign.getId().equalsIgnoreCase(campaignId)) {
+							return true;
+						}
+					}
+					return false;
+				});
 	}
 
 }

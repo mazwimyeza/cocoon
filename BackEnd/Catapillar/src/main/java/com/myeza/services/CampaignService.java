@@ -32,13 +32,13 @@ public interface CampaignService {
 	
 	// TODO insert post services
 	
-	Flux<Post> getPostsByEndorsement();
+	Flux<Post> getCampaignPostsByEndorsement(String campaignID);
 	
-	Flux<Post> getPostsByEngagement();
+	Flux<Post> getCampaignPostsByEngagement(String campaignId);
 	
-	Flux<Post> getPostsFromDate(Instant date);
+	Flux<Post> getCampaignPostsFromDate(String campaignId, Instant date);
 	
-	Flux<Post> getPostBeforeDate(Instant date);
+	Flux<Post> getCampaignPostBeforeDate(String campaignId, Instant date);
 	
 	// TODO add aggregate functions...
 	
