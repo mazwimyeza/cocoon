@@ -34,8 +34,8 @@ public class ProfileController {
 	}
 	
 	@GetMapping("{id}/campaigns")
-	public Flux<Campaign> getProfileCampaigns(){
-		return profileService.findCampaigns();
+	public Flux<Campaign> getProfileCampaigns(@PathVariable("id") String id){
+		return profileService.findProfileCampaigns(id);
 	}
 	
 	@GetMapping("/{name}")
