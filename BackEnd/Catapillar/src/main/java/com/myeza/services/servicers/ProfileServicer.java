@@ -25,6 +25,12 @@ public class ProfileServicer implements ProfileService{
 	
 	@Override
 	public Mono<Profile> save(Profile profile) {
+		Mono<Profile> prof = profileRepo.save(profile);
+		if(profileRepo.existsById(profile.getId()).equals(false)) {
+			System.exit(0);
+		}else {
+			System.out.println("It exits");
+		}
 		return profileRepo.save(profile);
 	}
 
