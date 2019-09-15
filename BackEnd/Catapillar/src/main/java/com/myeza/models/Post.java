@@ -1,6 +1,6 @@
 package com.myeza.models;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
@@ -31,7 +31,7 @@ public class Post {
 	
 	@PastOrPresent
 	@DateTimeFormat(iso = ISO.DATE_TIME)
-	private final Instant createAt;
+	private final LocalDate createdAt;
 	
 	@DBRef(lazy = true)
 	private List<Campaign> campaigns;

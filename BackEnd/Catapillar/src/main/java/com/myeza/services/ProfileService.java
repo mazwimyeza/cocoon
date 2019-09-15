@@ -1,12 +1,13 @@
 package com.myeza.services;
 
-import java.time.Instant;
+import java.time.LocalDate;
 
 import com.myeza.models.Campaign;
 import com.myeza.models.Profile;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
 
 public interface ProfileService {
 	
@@ -38,9 +39,9 @@ public interface ProfileService {
 	
 	Flux<Campaign> findProfileCampaignByDateDescending(String profileId);
 	
-	Flux<Campaign> findProfileCampaignsAfterDate(String profileId, Instant date);
+	Flux<Campaign> findProfileCampaignsAfterDate(String profileId, LocalDate date);
 	
-	Flux<Campaign> findProfileCampaignsBeforeDate(String profileId, Instant date);
+	Flux<Campaign> findProfileCampaignsBeforeDate(String profileId, LocalDate date);
 
 	
 	

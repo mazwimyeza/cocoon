@@ -1,8 +1,9 @@
 package com.myeza.services.servicers;
 
-import java.time.Instant;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.myeza.models.Campaign;
 import com.myeza.models.Post;
@@ -13,6 +14,7 @@ import com.myeza.services.PostService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Service
 public class CampaignServicer implements CampaignService {
 
 	@Autowired
@@ -54,7 +56,7 @@ public class CampaignServicer implements CampaignService {
 	@Override
 	public Mono<Campaign> findCampaignByName(String name) {
 		// TODO Auto-generated method stub
-		return campaignRepo.findByName(name);
+		return campaignRepo.findByTagline(name);
 	}
 
 	@Override
@@ -78,7 +80,7 @@ public class CampaignServicer implements CampaignService {
 	@Override
 	public Flux<Campaign> findCampaignsByAge() {
 		// TODO Auto-generated method stub
-		return campaignRepo.findAllByDurationDesc();
+		return campaignRepo.findAllByDuration();
 	}
 
 	@Override
@@ -88,15 +90,15 @@ public class CampaignServicer implements CampaignService {
 	}
 
 	@Override
-	public Flux<Campaign> findCampaignsAfterDate(Instant date) {
+	public Flux<Campaign> findCampaignsAfterDate(LocalDate date) {
 		// TODO Auto-generated method stub
-		return campaignRepo.findAllByDateFrom(date);
+		return campaignRepo.findAllByFirstOccuranceAfter(date);
 	}
 
 	@Override
-	public Flux<Campaign> findCampaignsBeforeDate(Instant date) {
+	public Flux<Campaign> findCampaignsBeforeDate(LocalDate date) {
 		// TODO Auto-generated method stub
-		return campaignRepo.findAllByDateBefore(date);
+		return campaignRepo.findAllByFirstOccuranceBefore(date);
 	}
 
 	@Override
@@ -128,7 +130,7 @@ public class CampaignServicer implements CampaignService {
 	}
 
 	@Override
-	public Flux<Post> getCampaignPostsFromDate(String campaignId, Instant date) {
+	public Flux<Post> getCampaignPostsFromDate(String campaignId, LocalDate date) {
 		// TODO Auto-generated method stub
 		return postService.findAllByDateFrom(date)
 				.filter(post -> {
@@ -142,7 +144,7 @@ public class CampaignServicer implements CampaignService {
 	}
 
 	@Override
-	public Flux<Post> getCampaignPostBeforeDate(String campaignId, Instant date) {
+	public Flux<Post> getCampaignPostBeforeDate(String campaignId, LocalDate date) {
 		// TODO Auto-generated method stub
 		return postService.findAllByDateBefore(date)
 				.filter(post -> {

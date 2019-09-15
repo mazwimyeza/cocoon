@@ -14,10 +14,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 public class TwintMapper {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
 	
 	public static void parseJSON(String filename) {
 		try {

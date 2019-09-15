@@ -1,6 +1,7 @@
 package com.myeza.repositories;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
@@ -11,7 +12,7 @@ import reactor.core.publisher.Mono;
 
 public interface CampaignRepository extends ReactiveMongoRepository<Campaign, String> {
 
-	Mono<Campaign> findByName(String name);
+	Mono<Campaign> findByTagline(String name);
 
 	Flux<Campaign> findAllOrderByFirstOccurance();
 
@@ -19,10 +20,10 @@ public interface CampaignRepository extends ReactiveMongoRepository<Campaign, St
 
 	Flux<Campaign> findAllOrderByLastOccurance();
 
-	Flux<Campaign> findAllByDateFrom(Instant date);
+	Flux<Campaign> findAllByFirstOccuranceAfter(LocalDate date);
 
-	Flux<Campaign> findAllByDateBefore(Instant date);
+	Flux<Campaign> findAllByFirstOccuranceBefore(LocalDate date);
 
-	Flux<Campaign> findAllByDurationDesc();
+	Flux<Campaign> findAllByDuration();
 
 }

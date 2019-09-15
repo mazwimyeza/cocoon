@@ -2,6 +2,7 @@ package com.myeza.models;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
@@ -13,7 +14,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -34,14 +34,12 @@ public class Campaign {
 
 	@CreatedDate
 	@PastOrPresent
-	@Field("date_created")
 	@DateTimeFormat(iso = ISO.DATE)
-	private Instant firstOccurance;
+	private LocalDate firstOccurance;
 
 	@PastOrPresent
-	@Field("date_ended")
 	@DateTimeFormat(iso = ISO.DATE)
-	private Instant lastOccurance;
+	private LocalDate lastOccurance;
 
 	private Duration duration;
 

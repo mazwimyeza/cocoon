@@ -1,8 +1,9 @@
 package com.myeza.services.servicers;
 
-import java.time.Instant;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.myeza.models.Campaign;
 import com.myeza.models.Profile;
@@ -13,6 +14,7 @@ import com.myeza.services.ProfileService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Service
 public class ProfileServicer implements ProfileService{
 
 	@Autowired
@@ -144,7 +146,7 @@ public class ProfileServicer implements ProfileService{
 	}
 
 	@Override
-	public Flux<Campaign> findProfileCampaignsAfterDate(String profileId,Instant date) {
+	public Flux<Campaign> findProfileCampaignsAfterDate(String profileId,LocalDate date) {
 		// TODO Auto-generated method stub
 		return campaignService.findCampaignsAfterDate(date)
 				.filter(campaign -> {
@@ -158,7 +160,7 @@ public class ProfileServicer implements ProfileService{
 	}
 
 	@Override
-	public Flux<Campaign> findProfileCampaignsBeforeDate(String profileId, Instant date) {
+	public Flux<Campaign> findProfileCampaignsBeforeDate(String profileId, LocalDate date) {
 		// TODO Auto-generated method stub
 		
 		return campaignService.findCampaignsBeforeDate(date)

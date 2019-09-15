@@ -1,8 +1,9 @@
 package com.myeza.services.servicers;
 
-import java.time.Instant;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.myeza.models.Post;
 import com.myeza.repositories.PostRepository;
@@ -11,6 +12,7 @@ import com.myeza.services.PostService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Service
 public class PostServicer implements PostService {
 
 	@Autowired
@@ -25,31 +27,31 @@ public class PostServicer implements PostService {
 	@Override
 	public Flux<Post> findAllOrderByEndorsementDesc() {
 	
-		return postRepo.findAllOrderByEndorsementDesc();
+		return postRepo.findAllOrderByEndorsement();
 	}
 
 	@Override
 	public Flux<Post> findAllOrderByEngagementDesc() {
 	
-		return postRepo.findAllOrderByEngagementDesc();
+		return postRepo.findAllOrderByEngagement();
 	}
 
 	@Override
-	public Flux<Post> findAllByDateFrom(Instant date) {
+	public Flux<Post> findAllByDateFrom(LocalDate date) {
 		
-		return postRepo.findAllByDateFrom(date);
+		return postRepo.findAllByCreatedAtAfter(date);
 	}
 
 	@Override
-	public Flux<Post> findAllByDateBefore(Instant date) {
+	public Flux<Post> findAllByDateBefore(LocalDate date) {
 		
-		return postRepo.findAllByDateBefore(date);
+		return postRepo.findAllByCreatedAtBefore(date);
 	}
 
 	@Override
-	public Flux<Post> findAllByDateBetween(Instant date1, Instant date2) {
+	public Flux<Post> findAllByDateBetween(LocalDate date1, LocalDate date2) {
 		
-		return postRepo.findAllByDateBetween(date1, date2);
+		return postRepo.findAllByCreatedAtBetween(date1, date2);
 	}
 	
 	
