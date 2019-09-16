@@ -3,6 +3,8 @@ package com.myeza.batch;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.validation.constraints.NotBlank;
+
 import lombok.Data;
 
 @Data
@@ -13,6 +15,7 @@ public class ProfileData {
 	private String name;
 	
 	private String username;
+	
 	
 	private String bio;
 	

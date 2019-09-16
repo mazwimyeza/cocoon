@@ -3,6 +3,7 @@ package com.myeza.services.servicers;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.stereotype.Service;
 
 import com.myeza.models.Campaign;
@@ -20,18 +21,16 @@ public class ProfileServicer implements ProfileService{
 	@Autowired
 	ProfileRepository profileRepo;
 	
+	
 	@Autowired
 	CampaignService campaignService;
 	
 	@Override
 	public Mono<Profile> save(Profile profile) {
 		Mono<Profile> prof = profileRepo.save(profile);
-		if(profileRepo.existsById(profile.getId()).equals(false)) {
-			System.exit(0);
-		}else {
-			System.out.println("It exits");
-		}
-		return profileRepo.save(profile);
+		System.out.println(profile + "saved, I hope");
+		prof.subscribe();
+		return prof;
 	}
 
 	@Override

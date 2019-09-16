@@ -11,6 +11,7 @@ import java.util.Locale;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.data.convert.ReadingConverter;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 
@@ -44,24 +45,30 @@ public class MongoConfig extends AbstractMongoConfiguration{
 		
 	}
 	
+	@ReadingConverter
 	private static final class MongoLocalDateFromStringConverter implements Converter<String, LocalDate>{
 
 		@Override
 		public LocalDate convert(String source) {
+			
 			DateTimeFormatter format = DateTimeFormatter.ofPattern("d MMM yyyy", Locale.US);
-   
+			if(!Character.isDigit(source.charAt(0))) {
+				return LocalDate.now();
+			}
+			
 			LocalDate time = source == null ? null : LocalDate.parse(source, format);
 			return time;
 		}
 		
 	}
 	
+	@ReadingConverter
 	private static final class MongoLocalTimeFromStringConverter implements Converter<String, LocalTime>{
 
 		@Override
 		public LocalTime convert(String source) {
 			DateTimeFormatter format = DateTimeFormatter.ofPattern("h:MM a", Locale.US);
-   
+			
 			LocalTime time = source == null ? null : LocalTime.parse(source, format);
 			return time;
 		}

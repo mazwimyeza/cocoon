@@ -3,15 +3,13 @@ package com.myeza.batch;
 import java.util.List;
 
 import org.springframework.batch.item.ItemWriter;
-import org.springframework.batch.item.data.MongoItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 
 import com.myeza.models.Profile;
 import com.myeza.services.ProfileService;
 
-@EnableMongoRepositories(basePackages = "com.myeza.repositories")
+@EnableReactiveMongoRepositories(basePackages = "com.myeza.repositories")
 public class ProfileWriter implements ItemWriter<Profile>{
 
 	@Autowired
@@ -29,7 +27,7 @@ public class ProfileWriter implements ItemWriter<Profile>{
 		 */
 		for(Profile item: items) {
 			profileService.save(item);
-			System.out.println(item + "Processed and written");
+			System.out.println(item + "Processed and written as ");
 		}
 		
 	}
