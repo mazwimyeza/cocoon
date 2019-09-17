@@ -20,7 +20,7 @@ public class Platform {
 	@Pattern(regexp = "twitter|facebook|lindedin", flags = Pattern.Flag.CASE_INSENSITIVE)
 	private String platformName;
 	
-	@Indexed(unique = true)
+	
 	@NotBlank
 	private String username;
 	

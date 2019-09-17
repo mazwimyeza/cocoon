@@ -27,14 +27,25 @@ public class ProfileServicer implements ProfileService{
 	
 	@Override
 	public Mono<Profile> save(Profile profile) {
-		Mono<Profile> prof = profileRepo.save(profile);
-		System.out.println(profile + "saved, I hope");
-		prof.subscribe();
-		return prof;
+		/*
+		 * profileRepo.findById(profile.getId())
+		 * 
+		 * Mono<Profile> prof = profileRepo.save(profile); System.out.println(profile +
+		 * "saved, I hope"); prof.subscribe(); return prof;
+		 */
+		/*
+		 * return this.profileRepo.findByName(profile.getName()) .flatMap(existingUser
+		 * -> existingUser != null ? Mono.empty() :
+		 * this.profileRepo.save(profile)).next();
+		 */
+		for(Campaign campaign: profile.getCampaigns())
+			this.campaignService.save(campaign);
+		return this.profileRepo.save(profile);
 	}
 
 	@Override
 	public Mono<Profile> updateProfile(Profile profile) {
+		
 	   return profileRepo.findById(profile.getId())
 			   .map(oldProfile -> {
 				   if(profile.getCampaigns() != null) {

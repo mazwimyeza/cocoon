@@ -26,7 +26,7 @@ public class ProfileWriter implements ItemWriter<Profile>{
 		 * writer.setTemplate(template); writer.write(items);
 		 */
 		for(Profile item: items) {
-			profileService.save(item);
+			profileService.save(item).subscribe();
 			System.out.println(item + "Processed and written as ");
 		}
 		
