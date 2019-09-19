@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.*;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,6 +42,7 @@ public class MongoConfig extends AbstractMongoConfiguration{
         converters.add(new DocumentProfileConverter());
         converters.add(new MongoLocalDateFromStringConverter());
         converters.add(new MongoLocalTimeFromStringConverter());
+        converters.add(new DocumentTweetConverter());
         return new MongoCustomConversions(converters);
 		
 	}
@@ -51,12 +53,19 @@ public class MongoConfig extends AbstractMongoConfiguration{
 		@Override
 		public LocalDate convert(String source) {
 			
-			DateTimeFormatter format = DateTimeFormatter.ofPattern("d MMM yyyy", Locale.US);
-			if(!Character.isDigit(source.charAt(0))) {
-				return LocalDate.now();
-			}
+			if(source == null)
+				return null;
 			
-			LocalDate time = source == null ? null : LocalDate.parse(source, format);
+			boolean matchFirst = Pattern.matches("\\d{4}-\\d{2}-\\d+", source);
+			
+			DateTimeFormatter format;
+			if(matchFirst)
+				format = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US);
+			else
+				format = DateTimeFormatter.ofPattern("d MMM yyyy", Locale.US);
+			
+			
+			LocalDate time = LocalDate.parse(source, format);
 			return time;
 		}
 		
@@ -67,9 +76,20 @@ public class MongoConfig extends AbstractMongoConfiguration{
 
 		@Override
 		public LocalTime convert(String source) {
-			DateTimeFormatter format = DateTimeFormatter.ofPattern("h:MM a", Locale.US);
 			
-			LocalTime time = source == null ? null : LocalTime.parse(source, format);
+			
+			if(source == null)
+				return null;
+			
+			boolean matchFirst = Pattern.matches("\\d{2}:\\d{2}:\\d{2}", source);
+			
+			DateTimeFormatter format;
+			if(matchFirst)
+				format = DateTimeFormatter.ofPattern("HH:mm:ss", Locale.US);
+			else
+				format = DateTimeFormatter.ofPattern("h:MM a", Locale.US);
+			
+			LocalTime time = LocalTime.parse(source, format);
 			return time;
 		}
 		

@@ -22,7 +22,9 @@ public interface ProfileService {
 	
 	Flux<Profile> findByName(String name);
 	
+	
 	// Platform services
+	Mono<Profile> findByUsername(String username);
 	
 	
 	// Campaign services

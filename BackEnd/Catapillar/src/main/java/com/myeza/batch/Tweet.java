@@ -2,6 +2,7 @@ package com.myeza.batch;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import lombok.Data;
@@ -21,6 +22,8 @@ public class Tweet implements Serializable{
 	private String created_at;
 	
 	private LocalDate date;
+	
+	private LocalTime time;
 	
 	private String timezone;
 	

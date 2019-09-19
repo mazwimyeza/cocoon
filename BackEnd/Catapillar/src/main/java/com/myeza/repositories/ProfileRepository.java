@@ -1,5 +1,6 @@
 package com.myeza.repositories;
 
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +15,8 @@ public interface ProfileRepository extends ReactiveMongoRepository<Profile, Stri
 	Mono<Profile> save(Profile profile);
 	Flux<Profile> findByName(String name);
 	Mono<Profile> findById(String id);
+	
+	@Query("{'platforms.username' : ?0}")
+	Mono<Profile> findByUsername(String username);
 
 }

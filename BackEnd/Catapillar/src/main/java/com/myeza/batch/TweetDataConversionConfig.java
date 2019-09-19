@@ -2,6 +2,7 @@ package com.myeza.batch;
 
 import java.net.MalformedURLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.batch.core.Job;
@@ -53,12 +54,21 @@ public class TweetDataConversionConfig {
 		return reader;
 	}
 	
-	/*
+	
 	@Bean
 	public ItemReader<Tweet> CampaignReader() throws MalformedURLException {
-		return null;
-	}
-	
+		
+		MongoItemReader<Tweet> reader = new MongoItemReader<>();
+		reader.setTemplate(mongo);
+		reader.setQuery("{}");
+		reader.setCollection("campaignData");
+		reader.setTargetType(Tweet.class);
+		Map<String, Sort.Direction> sort = new HashMap<String, Sort.Direction>();
+		sort.put("_id", Sort.Direction.ASC);
+		reader.setSort(sort);
+		
+		return reader;	}
+	/*
 	@Bean
 	public ItemReader<Tweet> PostReader() throws MalformedURLException {
 		return null;
@@ -68,11 +78,13 @@ public class TweetDataConversionConfig {
 	public ItemProcessor<ProfileData,Profile> ProfileProcessor(){
 		return new ProfileItemProcessor();
 	}
-	/*
+	
 	@Bean
-	public ItemProcessor<Tweet,Campaign> CampaignProcessor(){
-		return null;
+	public ItemProcessor<Tweet,List<Campaign> > CampaignProcessor(){
+		return new TweetItemProcessor();
 	}
+	
+	/*
 	
 	@Bean
 	public ItemProcessor<Tweet,Post> PostProcessor(){
@@ -82,25 +94,34 @@ public class TweetDataConversionConfig {
 	@Bean ItemWriter<Profile> ProfileWriter(){
 		return new ProfileWriter();
 	}
-	/*
-	@Bean ItemWriter<Campaign> CampaignWriter(){
-		return null;
+	
+	@Bean ItemWriter<? super List<Campaign>> CampaignWriter(){
+		return new CampaignWriter();
 	}
+	
+	/*
 	
 	@Bean ItemWriter<Post> PostWriter(){
 		return null;
 	}*/
 	
-	@Bean Job ProfileConversion() throws MalformedURLException{
+	@Bean 
+	Job ProfileConversion() throws MalformedURLException{
 		return jobs.get("getProfileJob")
 				.incrementer(new RunIdIncrementer())
 				.start(convertProfile())
 				.build();
 	}
 	
-	/*@Bean Job CampaignConversion() throws MalformedURLException{
-		return null;
+	@Bean 
+	Job CampaignConversion() throws MalformedURLException{
+		return jobs.get("getCampaignJob")
+				.incrementer(new RunIdIncrementer())
+				.start(convertCampaign())
+				.build();
 	}
+	
+	/*
 	
 	@Bean Job PostConversion() throws MalformedURLException{
 		return null;
@@ -109,22 +130,24 @@ public class TweetDataConversionConfig {
 	@Bean
 	public Step convertProfile() throws MalformedURLException{
 		return steps.get("convertProfile")
-				.<ProfileData, Profile>chunk(1)
+				.<ProfileData, Profile>chunk(5)
 				.reader(ProfileReader())
 				.processor(ProfileProcessor())
 				.writer(ProfileWriter())
 				.build();
 	}
 
-	/*@Bean
+	@Bean
 	public Step convertCampaign() throws MalformedURLException{
 		return steps.get("convertCampaign")
-				.<Tweet, Campaign>chunk(5)
+				.<Tweet, List<Campaign> >chunk(10)
 				.reader(CampaignReader())
 				.processor(CampaignProcessor())
 				.writer(CampaignWriter())
 				.build();
 	}
+	
+	/*
 	
 	@Bean
 	public Step convertPost() throws MalformedURLException{

@@ -27,34 +27,20 @@ public class ProfileServicer implements ProfileService{
 	
 	@Override
 	public Mono<Profile> save(Profile profile) {
-		/*
-		 * profileRepo.findById(profile.getId())
-		 * 
-		 * Mono<Profile> prof = profileRepo.save(profile); System.out.println(profile +
-		 * "saved, I hope"); prof.subscribe(); return prof;
-		 */
-		/*
-		 * return this.profileRepo.findByName(profile.getName()) .flatMap(existingUser
-		 * -> existingUser != null ? Mono.empty() :
-		 * this.profileRepo.save(profile)).next();
-		 */
-		for(Campaign campaign: profile.getCampaigns())
-			this.campaignService.save(campaign);
+	
 		return this.profileRepo.save(profile);
 	}
+	
 
 	@Override
 	public Mono<Profile> updateProfile(Profile profile) {
 		
 	   return profileRepo.findById(profile.getId())
 			   .map(oldProfile -> {
-				   if(profile.getCampaigns() != null) {
-					   oldProfile.setCampaigns(profile.getCampaigns());
-				   }
-				   if(profile.getPlatforms() != null) {
+				   if(profile.getPlatforms() != null && !profile.getPlatforms().equals(oldProfile.getPlatforms())) {
 					   oldProfile.setPlatforms(profile.getPlatforms());
 				   }
-				   if(profile.getName() != null) {
+				   if(profile.getName() != null && !profile.getName().equalsIgnoreCase(oldProfile.getName())) {
 					   oldProfile.setName(profile.getName());
 				   }
 
@@ -188,6 +174,12 @@ public class ProfileServicer implements ProfileService{
 					}
 					return false;
 				});
+	}
+
+	@Override
+	public Mono<Profile> findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return this.profileRepo.findByUsername(username);
 	}
 
 }

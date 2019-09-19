@@ -21,13 +21,9 @@ public class ProfileWriter implements ItemWriter<Profile>{
 	
 	@Override
 	public void write(List<? extends Profile> items) throws Exception {
-		/*
-		 * MongoItemWriter<Profile> writer = new MongoItemWriter<>();
-		 * writer.setTemplate(template); writer.write(items);
-		 */
+		
 		for(Profile item: items) {
 			profileService.save(item).subscribe();
-			System.out.println(item + "Processed and written as ");
 		}
 		
 	}

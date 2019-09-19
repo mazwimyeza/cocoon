@@ -26,21 +26,23 @@ public class CampaignServicer implements CampaignService {
 	@Override
 	public Mono<Campaign> save(Campaign campaign) {
 		// TODO Auto-generated method stub
-		return campaignRepo.save(campaign);
+		return this.update(campaign);
 	}
 	
 	@Override
 	public Mono<Campaign> update(Campaign campaign) {
 		// TODO Auto-generated method stub
-		return campaignRepo.findById(campaign.getId())
+		return campaignRepo.findByTagline(campaign.getTagline())
 				.map(oldCampaign -> {
+					if(oldCampaign == null)
+						return campaign;
 					if(campaign.getFirstOccurance() != null) {
 						if(campaign.getFirstOccurance().isBefore(oldCampaign.getFirstOccurance())) {
 							oldCampaign.setFirstOccurance(campaign.getFirstOccurance());
 						}
 						else {
-							if(oldCampaign.getLastOccurance() == null || (oldCampaign.getLastOccurance().isBefore(campaign.getFirstOccurance()))) {
-								oldCampaign.setLastOccurance(campaign.getFirstOccurance());
+							if(oldCampaign.getLastOccurance() == null || (oldCampaign.getLastOccurance().isBefore(campaign.getLastOccurance()))) {
+								oldCampaign.setLastOccurance(campaign.getLastOccurance());
 							}
 						}
 					}
@@ -50,7 +52,7 @@ public class CampaignServicer implements CampaignService {
 					}
 					
 					return oldCampaign;
-				}).flatMap(this::save);
+				}).flatMap(campaignRepo::save);
 	}
 
 	@Override

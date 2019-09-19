@@ -5,9 +5,8 @@ import java.util.List;
 
 import org.springframework.batch.item.ItemProcessor;
 
-import com.myeza.models.Profile;
-import com.myeza.models.Campaign;
 import com.myeza.models.Platform;
+import com.myeza.models.Profile;
 
 public class ProfileItemProcessor implements ItemProcessor<ProfileData, Profile> {
 
@@ -25,18 +24,14 @@ public class ProfileItemProcessor implements ItemProcessor<ProfileData, Profile>
 		List<Platform> platforms = new ArrayList<>();
 		platforms.add(platform);
 
-		// map campaign info
-		List<Campaign> campaigns = new ArrayList<>();
-
 		// map profile info
-		//String id = data.getId();
+		String id = data.getId();
 		String name = data.getName();
 		Profile profile = new Profile();
 
-		//profile.setId(id);
+		profile.setId(id);
 		profile.setName(name);
 		profile.setPlatforms(platforms);
-		profile.setCampaigns(campaigns);
 
 		return profile;
 	}
