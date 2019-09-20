@@ -9,6 +9,7 @@ import { PlatformItemComponent } from './components/items/platform-item/platform
 import { CampaignItemComponent } from './components/items/campaign-item/campaign-item.component';
 import { PostItemComponent } from './components/items/post-item/post-item.component';
 import { CampaignComponent } from './components/campaign/campaign.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CampaignComponent } from './components/campaign/campaign.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
