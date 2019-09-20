@@ -1,25 +1,22 @@
 package com.myeza.repositories;
 
-import java.time.Instant;
 import java.time.LocalDate;
+import java.util.List;
 
-import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.myeza.models.Post;
 
-import reactor.core.publisher.Flux;
+public interface PostRepository extends MongoRepository<Post, String> {
 
-public interface PostRepository extends ReactiveMongoRepository<Post, String> {
+	List<Post> findAllOrderByEndorsement();
 
-	Flux<Post> findAllOrderByEndorsement();
+	List<Post> findAllOrderByEngagement();
 
-	Flux<Post> findAllOrderByEngagement();
+	List<Post> findAllByCreatedAtAfter(LocalDate date);
 
-	Flux<Post> findAllByCreatedAtAfter(LocalDate date);
+	List<Post> findAllByCreatedAtBefore(LocalDate date);
 
-	Flux<Post> findAllByCreatedAtBefore(LocalDate date);
-
-	Flux<Post> findAllByCreatedAtBetween(LocalDate date1, LocalDate date2);
-
+	List<Post> findAllByCreatedAtBetween(LocalDate date1, LocalDate date2);
 
 }

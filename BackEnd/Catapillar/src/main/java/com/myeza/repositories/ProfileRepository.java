@@ -1,22 +1,22 @@
 package com.myeza.repositories;
 
+import java.util.Optional;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
-import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 
 import com.myeza.models.Profile;
 
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 @Repository
-public interface ProfileRepository extends ReactiveMongoRepository<Profile, String> {
+public interface ProfileRepository extends MongoRepository<Profile, String> {
 
-	Mono<Profile> save(Profile profile);
-	Flux<Profile> findByName(String name);
-	Mono<Profile> findById(String id);
+	
+	Profile findByName(String name);
+	Optional<Profile> findById(String id);
 	
 	@Query("{'platforms.username' : ?0}")
-	Mono<Profile> findByUsername(String username);
+	Profile findByUsername(String username);
 
 }

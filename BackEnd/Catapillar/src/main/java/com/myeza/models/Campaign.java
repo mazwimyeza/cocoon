@@ -1,7 +1,5 @@
 package com.myeza.models;
 
-import java.time.Duration;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
@@ -48,6 +46,7 @@ public class Campaign {
 	@Positive
 	private int engagements;
 
+	@DBRef
 	private List<Profile> owners;
 
 	@Field("active_months")

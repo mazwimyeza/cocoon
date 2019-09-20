@@ -1,29 +1,28 @@
 package com.myeza.repositories;
 
-import java.time.Instant;
 import java.time.LocalDate;
+import java.util.List;
 
-import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.myeza.models.Campaign;
 
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
-public interface CampaignRepository extends ReactiveMongoRepository<Campaign, String> {
 
-	Mono<Campaign> findByTagline(String name);
+public interface CampaignRepository extends MongoRepository<Campaign, String> {
 
-	Flux<Campaign> findAllOrderByFirstOccurance();
+	Campaign findByTagline(String name);
 
-	Flux<Campaign> findAllOrderByEngagements();
+	List<Campaign> findAllOrderByFirstOccurance();
 
-	Flux<Campaign> findAllOrderByLastOccurance();
+	List<Campaign> findAllOrderByEngagements();
 
-	Flux<Campaign> findAllByFirstOccuranceAfter(LocalDate date);
+	List<Campaign> findAllOrderByLastOccurance();
 
-	Flux<Campaign> findAllByFirstOccuranceBefore(LocalDate date);
+	List<Campaign> findAllByFirstOccuranceAfter(LocalDate date);
 
-	Flux<Campaign> findAllByDuration();
+	List<Campaign> findAllByFirstOccuranceBefore(LocalDate date);
+
+	List<Campaign> findAllByDuration();
 
 }
