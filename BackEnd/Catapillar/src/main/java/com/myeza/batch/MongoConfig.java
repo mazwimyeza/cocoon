@@ -31,7 +31,7 @@ public class MongoConfig extends AbstractMongoConfiguration{
 	@Override
 	protected String getDatabaseName() {
 		// TODO Auto-generated method stub
-		return "twint_data";
+		return "caterpillar";
 	}
 	
 	@Override

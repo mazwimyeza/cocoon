@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.myeza.models.Profile;
 
-
 @Repository
 public interface ProfileRepository extends MongoRepository<Profile, String> {
 

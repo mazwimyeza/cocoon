@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import com.myeza.models.Campaign;
 import com.myeza.services.CampaignService;
 
-@EnableMongoRepositories(basePackages = "com.myeza.repositories")
+@EnableMongoRepositories(basePackages = "com.myeza.*")
 public class CampaignWriter implements ItemWriter<List<Campaign>> {
 
 	@Autowired
@@ -22,7 +22,6 @@ public class CampaignWriter implements ItemWriter<List<Campaign>> {
 			if (campaigns == null || campaigns.isEmpty())
 				continue;
 			for (Campaign campaign : campaigns) {
-
 				campaignService.save(campaign);
 
 			}

@@ -12,7 +12,6 @@ import com.myeza.repositories.ProfileRepository;
 import com.myeza.services.CampaignService;
 import com.myeza.services.ProfileService;
 
-
 @Service
 public class ProfileServicer implements ProfileService{
 

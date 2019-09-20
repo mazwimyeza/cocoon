@@ -1,13 +1,17 @@
 package com.myeza.services.servicers;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myeza.models.Campaign;
 import com.myeza.models.Post;
+import com.myeza.models.Profile;
 import com.myeza.repositories.CampaignRepository;
 import com.myeza.services.CampaignService;
 import com.myeza.services.PostService;
@@ -25,7 +29,21 @@ public class CampaignServicer implements CampaignService {
 
 	@Override
 	public Campaign save(Campaign campaign) {
-		// TODO Auto-generated method stub
+		Campaign existingCampaign = this.campaignRepo.findByTagline(campaign.getTagline());
+		if(existingCampaign == null)
+			return this.campaignRepo.save(campaign);
+		campaign.setId(existingCampaign.getId());
+		int engagement = campaign.getEngagements() + existingCampaign.getEngagements();
+		campaign.setEngagements(engagement);
+		if(campaign.getFirstOccurance().isAfter(existingCampaign.getFirstOccurance()))
+			campaign.setFirstOccurance(existingCampaign.getFirstOccurance());
+		if(campaign.getLastOccurance().isBefore(existingCampaign.getLastOccurance()))
+			campaign.setLastOccurance(existingCampaign.getLastOccurance());
+		Set<Profile> owners = new HashSet<Profile>();
+		owners.addAll(campaign.getOwners());
+		owners.addAll(existingCampaign.getOwners());
+		List<Profile> owning = new ArrayList<>(owners);
+		campaign.setOwners(owning);
 		return this.campaignRepo.save(campaign);
 	}
 
