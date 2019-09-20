@@ -30,7 +30,6 @@ public class TweetItemProcessor implements ItemProcessor<Tweet, List<Campaign>> 
 			Campaign campaign = new Campaign(null, hashtag, item.getDate(), item.getDate(), engagements, profiles);
 			campaigns.add(campaign);
 		}
-
 		return campaigns;
 	}
 

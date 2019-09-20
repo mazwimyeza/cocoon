@@ -33,7 +33,7 @@ public class Post {
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	private final LocalDate createdAt;
 	
-	@DBRef(lazy = true)
+	@DBRef
 	private List<Campaign> campaigns;
 	
 	@PositiveOrZero
