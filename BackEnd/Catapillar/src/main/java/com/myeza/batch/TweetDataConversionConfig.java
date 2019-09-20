@@ -128,7 +128,7 @@ public class TweetDataConversionConfig {
 				.start(convertCampaign())
 				.build();
 	}
-	*/
+	
 	
 	
 	@Bean Job PostConversion() throws MalformedURLException{
@@ -137,6 +137,7 @@ public class TweetDataConversionConfig {
 				.start(convertPost())
 				.build();
 	}
+	*/
 	
 	@Bean
 	public Step convertProfile() throws MalformedURLException{

@@ -8,7 +8,7 @@ import { Campaign } from '../models/campaign/campaign.module';
 })
 export class CampaignService {
 
-  campaignsUrl: string = 'http://localhost/campaigns';
+  campaignsUrl: string = 'http://localhost:8080/campaigns';
   campaignLimit: string = '?_limit=10'
 
   constructor(private http: HttpClient) { }

@@ -9,8 +9,8 @@ import { Campaign } from '../models/campaign/campaign.module';
 })
 export class ProfileService {
 
- profilesUrl: string = 'https://localhost/profiles';
- profilesLimit: string = '?_limit=6';
+ profilesUrl: string = 'http://localhost:8080/profiles';
+ profilesLimit: string = '';
 
   constructor(private http:HttpClient) { }
 
