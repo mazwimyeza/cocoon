@@ -10,6 +10,7 @@ import { CampaignItemComponent } from './components/items/campaign-item/campaign
 import { PostItemComponent } from './components/items/post-item/post-item.component';
 import { CampaignComponent } from './components/campaign/campaign.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
