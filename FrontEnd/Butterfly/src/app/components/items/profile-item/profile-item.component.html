@@ -1,7 +1,7 @@
-<div>
-<h3> {{ profile.name }} </h3>
+<mat-card>
+<mat-card-title class="mat-display-1"> {{ profile.name }} </mat-card-title>
 <app-platform-item
 *ngFor="let platform of profile.platforms"
 [platform]="platform">
 </app-platform-item>
-</div>
+</mat-card>
