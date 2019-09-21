@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.myeza.models.Campaign;
@@ -62,7 +63,7 @@ public class CampaignServicer implements CampaignService {
 	@Override
 	public List<Campaign> findCampaigns() {
 		// TODO Auto-generated method stub
-		return this.campaignRepo.findAll();
+		return this.campaignRepo.findAll(new Sort(Sort.Direction.DESC, "engagements"));
 	}
 
 	@Override
@@ -74,7 +75,7 @@ public class CampaignServicer implements CampaignService {
 	@Override
 	public List<Campaign> findCampaignsByEngagement() {
 		// TODO Auto-generated method stub
-		return this.campaignRepo.findAllOrderByEngagements();
+		return this.campaignRepo.findAll();
 	}
 
 	@Override

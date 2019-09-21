@@ -1,1 +1,9 @@
-<p>campaign-item works!</p>
+<mat-card class="item">
+<mat-card-title> {{ campaign.tagline }}</mat-card-title>
+<mat-card-content>
+    <p>Start Date: <span>{{ campaign.firstOccurance }}</span></p>
+    <p>Last Date: <span>{{ campaign.lastOccurance }}</span></p>
+    <p>Impressions: <span>{{campaign.engagements}}</span></p>
+</mat-card-content>
+
+</mat-card>

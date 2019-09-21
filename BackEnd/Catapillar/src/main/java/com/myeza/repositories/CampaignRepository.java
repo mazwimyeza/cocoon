@@ -12,6 +12,7 @@ import com.myeza.models.Campaign;
 public interface CampaignRepository extends MongoRepository<Campaign, String> {
 
 	Campaign findByTagline(String name);
+	
 
 	List<Campaign> findAllOrderByFirstOccurance();
 
@@ -24,5 +25,7 @@ public interface CampaignRepository extends MongoRepository<Campaign, String> {
 	List<Campaign> findAllByFirstOccuranceBefore(LocalDate date);
 
 	List<Campaign> findAllByDuration();
+
+	List<Campaign> findByEngagements();
 
 }

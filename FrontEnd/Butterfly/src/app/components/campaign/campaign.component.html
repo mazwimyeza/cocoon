@@ -1,1 +1,5 @@
-<p>campaign works!</p>
+<h2>Number of campaigns: {{ campaigns.length }}</h2>
+<app-campaign-item
+*ngFor="let campaign of campaigns"
+[campaign]="campaign">
+</app-campaign-item>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CampaignService } from 'src/app/services/campaign.service';
+import { Campaign } from 'src/app/models/campaign/campaign.module'
 
 @Component({
   selector: 'app-campaign',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CampaignComponent implements OnInit {
 
-  constructor() { }
+  campaigns: Campaign[];
+
+  constructor(private campaignService: CampaignService) { }
 
   ngOnInit() {
+    this.campaignService.getCampaigns().subscribe(
+      campaign => {
+        this.campaigns = campaign;
+      }
+    )
   }
+
+
 
 }
