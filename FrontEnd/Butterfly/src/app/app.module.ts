@@ -12,6 +12,7 @@ import { CampaignComponent } from './components/campaign/campaign.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './imports/material/material.module';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MaterialModule } from './imports/material/material.module';
     PlatformItemComponent,
     CampaignItemComponent,
     PostItemComponent,
-    CampaignComponent
+    CampaignComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
