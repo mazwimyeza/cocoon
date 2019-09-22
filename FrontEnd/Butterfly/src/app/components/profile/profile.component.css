@@ -1,8 +1,8 @@
 .profiles-body {
-    background: url('/assets/img/walking-butterfly.jpg') no-repeat center center;
-    height: max-content;
+    background: black url('/assets/img/walking-butterfly.jpg') round center center;
+    height: 100%;
     background-size: cover;
-    background-color: black;
+    overflow: auto;
 }
 
 .heading {
@@ -18,5 +18,9 @@
     margin-top: 5%;
     margin-left: 10%;
     margin-right: 10%;
-    padding: 1.2em;
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }

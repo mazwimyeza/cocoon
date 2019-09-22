@@ -1,6 +1,7 @@
 package com.myeza.controllers;
 
 import java.util.List;
+import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,7 +24,9 @@ public class ProfileController {
 	
 	@GetMapping()
 	public List<Profile> getProfiles(){
-		return profileService.findAll();
+		List<Profile> profiles = profileService.findAll();
+		Collections.shuffle(profiles);
+		return profiles;
 	}
 	
 	@GetMapping("/{id}")
