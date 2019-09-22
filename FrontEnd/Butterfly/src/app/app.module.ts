@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './imports/material/material.module';
 import { HomeComponent } from './components/home/home.component';
+import { OpeningComponent } from './components/opening/opening.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HomeComponent } from './components/home/home.component';
     CampaignItemComponent,
     PostItemComponent,
     CampaignComponent,
-    HomeComponent
+    HomeComponent,
+    OpeningComponent
   ],
   imports: [
     BrowserModule,
