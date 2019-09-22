@@ -1,0 +1,22 @@
+.profiles-body {
+    background: url('/assets/img/walking-butterfly.jpg') no-repeat center center;
+    height: max-content;
+    background-size: cover;
+    background-color: black;
+}
+
+.heading {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    margin-top: 1.5em;
+    opacity: 0.8;
+}
+
+.brand-highlights {
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 1.2em;
+}

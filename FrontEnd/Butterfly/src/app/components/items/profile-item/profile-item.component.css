@@ -1,0 +1,9 @@
+.brand-box {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 0.5em;
+    display: inline-block;
+}

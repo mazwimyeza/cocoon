@@ -1,7 +1,3 @@
-<mat-card>
-<mat-card-title class="mat-display-1"> {{ profile.name }} </mat-card-title>
-<app-platform-item
-*ngFor="let platform of profile.platforms"
-[platform]="platform">
-</app-platform-item>
+<mat-card class="brand-box" matTooltip="{{this.base}} total audience" matTooltipPosition="above">
+    <mat-card-title class="mat-display-1">{{this.profile.name}}</mat-card-title>
 </mat-card>

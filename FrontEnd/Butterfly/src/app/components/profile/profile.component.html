@@ -1,4 +1,11 @@
-<app-profile-item
-*ngFor="let profile of profiles"
-[profile]="profile">
-</app-profile-item>
+<div class="profiles-body">
+    <app-nav></app-nav>
+    <section class="heading">
+        <h1 class="mat-display-3">Brands we're tracking</h1>
+    </section>
+    <div class="brand-highlights">
+        <app-profile-item *ngFor="let profile of profiles" [profile]="profile">
+        </app-profile-item>
+    </div>
+
+</div>
