@@ -1,10 +1,12 @@
 <div class="campaigns-body">
     <app-nav></app-nav>
     <section class="heading">
-        <h2>If it's a hashtag <span>It's a campaign</span></h2>
+        <h1>If it's a #hashtag, <span>it's a campaign!</span></h1>
     </section>
+
     <div class="campaign-highlights">
         <app-campaign-item *ngFor="let campaign of campaigns" [campaign]="campaign">
         </app-campaign-item>
     </div>
+
 </div>

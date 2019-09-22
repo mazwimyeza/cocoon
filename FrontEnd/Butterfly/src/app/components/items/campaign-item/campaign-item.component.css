@@ -9,3 +9,7 @@
 .campaign-box:hover {
     background-color: coral;
 }
+
+.title {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
