@@ -2,6 +2,27 @@
     opacity: 0.5;
 }
 
+.bar div {
+    width: 3%;
+}
+
+
+.bar a img {
+    height: 100%;
+    width: 100%;
+}
+
+.title {
+    display: flex;
+    margin-bottom: 0.2em;
+}
+
+.tagline {
+    line-height: 0.2em;
+   
+}
+
+
 .open-body {
     height: 100%;
     width: 100%;
@@ -13,7 +34,7 @@
     width:100%;
     top: 0;
     left: 0;
-    margin-top: 10%;
+    margin-top: 5%;
   }
 
   .middle {
@@ -38,6 +59,11 @@
     margin: 1em;
     padding: 1em;
     border-radius: 0.5em;
-    float: left;
+   /* float: left;*/
+   
+}
+
+.box:hover {
+    background-color: burlywood;
    
 }
