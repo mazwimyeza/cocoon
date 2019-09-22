@@ -1,5 +1,11 @@
-.item {
-    display: flex;
-    flex-direction: column;
-    float: left;
+.campaign-box {
+    margin: 0.8em;
+    padding: 0.7em;
+    border-radius: 1.5em;
+    display: inline-block;
+    opacity: 0.9;
+}
+
+.campaign-box:hover {
+    background-color: coral;
 }
