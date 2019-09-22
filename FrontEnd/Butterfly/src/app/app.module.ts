@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './imports/material/material.module';
 import { HomeComponent } from './components/home/home.component';
 import { OpeningComponent } from './components/opening/opening.component';
+import { NavComponent } from './components/utils/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { OpeningComponent } from './components/opening/opening.component';
     PostItemComponent,
     CampaignComponent,
     HomeComponent,
-    OpeningComponent
+    OpeningComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
