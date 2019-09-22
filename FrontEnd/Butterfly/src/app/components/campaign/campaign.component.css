@@ -1,0 +1,26 @@
+.campaigns-body {
+    background: black url('/assets/img/cool-butterfly.jpg') round center center;
+    height: 100%;
+    background-size: cover;
+    overflow: auto;
+}
+
+.heading {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    margin-top: 1.5em;
+    opacity: 0.8;
+}
+
+.campaign-highlights {
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}

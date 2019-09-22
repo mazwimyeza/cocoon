@@ -1,5 +1,10 @@
-<h2>Number of campaigns: {{ campaigns.length }}</h2>
-<app-campaign-item
-*ngFor="let campaign of campaigns"
-[campaign]="campaign">
-</app-campaign-item>
+<div class="campaigns-body">
+    <app-nav></app-nav>
+    <section class="heading">
+        <h2>Number of campaigns: {{ campaigns.length }}</h2>
+    </section>
+    <div class="campaign-highlights">
+        <app-campaign-item *ngFor="let campaign of campaigns" [campaign]="campaign">
+        </app-campaign-item>
+    </div>
+</div>
