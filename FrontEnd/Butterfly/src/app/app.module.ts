@@ -15,6 +15,8 @@ import { MaterialModule } from './imports/material/material.module';
 import { HomeComponent } from './components/home/home.component';
 import { OpeningComponent } from './components/opening/opening.component';
 import { NavComponent } from './components/utils/nav/nav.component';
+import { ProfileDetailComponent } from './components/details/profile-detail/profile-detail.component';
+import { CampaignDetailComponent } from './components/details/campaign-detail/campaign-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { NavComponent } from './components/utils/nav/nav.component';
     CampaignComponent,
     HomeComponent,
     OpeningComponent,
-    NavComponent
+    NavComponent,
+    ProfileDetailComponent,
+    CampaignDetailComponent
   ],
   imports: [
     BrowserModule,

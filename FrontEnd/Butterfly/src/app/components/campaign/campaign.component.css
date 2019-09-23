@@ -29,20 +29,3 @@
     align-items: center;
     justify-content: center;
 }
-
-
-/*
-.loading-bar {
-    pointer-events: painted;
-    z-index: 99999;
-    border: none;
-    margin: 0px;
-    padding: 0px;
-    width: 100%;
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    cursor: zoom-out;
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.6);
-}*/
