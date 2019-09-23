@@ -11,3 +11,7 @@
 .title {
     font-family: 'Open Sans Condensed', sans-serif;
 }
+
+.brand-box:hover {
+    background-color: coral;
+}
