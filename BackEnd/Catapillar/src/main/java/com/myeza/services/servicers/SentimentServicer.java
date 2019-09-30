@@ -64,7 +64,6 @@ public class SentimentServicer implements SentimentService {
 				Tree tree = sentence.get(SentimentCoreAnnotations.SentimentAnnotatedTree.class);
 				int sentiment = RNNCoreAnnotations.getPredictedClass(tree);
 				String partText = sentence.toString();
-				System.out.println(partText);
 				if (partText.length() > longest) {
 					mainSentiment = sentiment;
 					longest = partText.length();
