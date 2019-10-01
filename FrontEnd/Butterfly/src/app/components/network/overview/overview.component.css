@@ -1,0 +1,21 @@
+.body {
+    background: black url('/assets/img/cocoons-butterfly.jpg') round center center;
+    height: 100%;
+    background-size: cover;
+    overflow: auto;
+    box-sizing: border-box
+}
+
+.box {
+    width: 100%;
+    margin-top: 2em;
+    padding: 1em;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    display: block;
+}

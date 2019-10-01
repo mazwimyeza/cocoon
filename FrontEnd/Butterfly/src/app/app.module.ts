@@ -17,6 +17,10 @@ import { OpeningComponent } from './components/opening/opening.component';
 import { NavComponent } from './components/utils/nav/nav.component';
 import { ProfileDetailComponent } from './components/details/profile-detail/profile-detail.component';
 import { CampaignDetailComponent } from './components/details/campaign-detail/campaign-detail.component';
+import { HighchartsChartModule } from 'highcharts-angular';
+import { CampaignSentimentComponent } from './components/details/views/campaign-sentiment/campaign-sentiment.component';
+import { OverviewComponent } from './components/network/overview/overview.component'
+
 
 @NgModule({
   declarations: [
@@ -31,14 +35,17 @@ import { CampaignDetailComponent } from './components/details/campaign-detail/ca
     OpeningComponent,
     NavComponent,
     ProfileDetailComponent,
-    CampaignDetailComponent
+    CampaignDetailComponent,
+    CampaignSentimentComponent,
+    OverviewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HighchartsChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

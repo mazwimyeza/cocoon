@@ -68,7 +68,18 @@ public class ProfileServicer implements ProfileService{
 	@Override
 	public List<Campaign> findProfileCampaigns(String profileId) {
 		// TODO Auto-generated method stub
-		return null;
+		List<Campaign> campaigns = this.campaignService.findCampaigns();
+		campaigns.removeIf(cam -> {
+			List<Profile> profiles = cam.getOwners();
+			boolean remove = true;
+			for(Profile prof: profiles) {
+				if(prof.getId().equalsIgnoreCase(profileId)) {
+					remove = false;
+				}
+			}
+			return remove;
+		});
+		return campaigns;
 	}
 
 

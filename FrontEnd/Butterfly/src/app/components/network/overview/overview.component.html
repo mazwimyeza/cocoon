@@ -1,0 +1,9 @@
+<div class="body">
+    <app-nav></app-nav>
+
+    <div class="box">
+        <highcharts-chart id="container" [Highcharts]="Highcharts" [constructorType]="chartConstructor" [options]="chartOptions" [callbackFunction]="chartCallback" [(update)]="updateFromInput" [oneToOne]="true">
+        </highcharts-chart>
+    </div>
+
+</div>
