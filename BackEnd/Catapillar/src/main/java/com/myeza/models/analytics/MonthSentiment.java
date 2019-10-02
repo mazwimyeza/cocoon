@@ -8,16 +8,43 @@ import javax.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-
+@Data
 public class MonthSentiment {
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((yearMonth == null) ? 0 : yearMonth.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MonthSentiment other = (MonthSentiment) obj;
+		if (yearMonth == null) {
+			if (other.yearMonth != null)
+				return false;
+		} else if (!yearMonth.equals(other.yearMonth))
+			return false;
+		return true;
+	}
+
 	@NotNull
 	private final LocalDate yearMonth;
 	
 	private int sentimentAccumulator;
 	
 	@PositiveOrZero
-	private double sentiment;
+	private int sentiment;
+	
+
 	
 	@PositiveOrZero
 	private int numberOfPosts;
@@ -33,7 +60,9 @@ public class MonthSentiment {
 		this.sentimentAccumulator += sentiment;
 		this.numberOfPosts++;
 		
-		this.sentiment = this.sentimentAccumulator/this.numberOfPosts;
+		double sent = this.sentimentAccumulator/(double)this.numberOfPosts;
+		
+		this.sentiment = (@PositiveOrZero int) Math.round(sent);
 	}
 	
 }

@@ -23,7 +23,9 @@ public interface PostRepository extends MongoRepository<Post, String> {
 
 	List<Post> findAllByCreatedAtBetween(LocalDate date1, LocalDate date2);
 
-	@Query("{campaigns: ?0}")
+
 	List<Post> findByCampaigns(Campaign campaign);
+	
+	
 
 }

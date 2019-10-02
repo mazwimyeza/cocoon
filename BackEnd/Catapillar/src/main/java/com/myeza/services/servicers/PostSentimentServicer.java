@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.myeza.services.SentimentService;
+import com.myeza.services.PostSentimentService;
 
 
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -17,14 +17,14 @@ import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.util.CoreMap;
 
 @Service
-public class SentimentServicer implements SentimentService {
+public class PostSentimentServicer implements PostSentimentService {
 
 	@Autowired
 	StanfordCoreNLP stanfordCoreNLP;
 
 	private ArrayList<String> stopWords;
 
-	public SentimentServicer() {
+	public PostSentimentServicer() {
 		String[] stops = { "a", "about", "above", "after", "again", "against", "ain", "all", "am", "an", "and", "any",
 				"are", "aren", "aren't", "as", "at", "be", "because", "been", "before", "being", "below", "between",
 				"both", "but", "by", "can", "couldn", "couldn't", "d", "did", "didn", "didn't", "do", "does", "doesn",

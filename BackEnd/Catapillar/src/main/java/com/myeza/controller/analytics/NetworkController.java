@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myeza.models.Post;
 import com.myeza.models.analytics.CampaignConnection;
 import com.myeza.models.analytics.CampaignProfileConnection;
 import com.myeza.models.analytics.ProfileConnection;
 import com.myeza.repositories.analytics.CampaignProfileConnectionRepository;
 import com.myeza.repositories.analytics.ProfileConnectionRepository;
+import com.myeza.services.CampaignService;
 import com.myeza.services.analytics.NetworkGraphService;
 
 @RequestMapping(path = "/network", produces = "application/json")
@@ -29,6 +31,9 @@ public class NetworkController {
 
 	@Autowired
 	CampaignProfileConnectionRepository overviewConnects;
+	
+	@Autowired
+	CampaignService campo;
 
 	@GetMapping("/profiles")
 	public List<ProfileConnection> getProfileConnections() {
@@ -51,6 +56,12 @@ public class NetworkController {
 	@Deprecated
 	public Set<CampaignConnection> getCampaignConnections() {
 		return network.getCampaignConnections();
+	}
+	
+	@GetMapping("/test")
+	public List<Post> getPostsByCampaign(){
+		System.out.println(this.campo.findCampaignByName("#ai"));
+		return this.campo.getCampaignPosts(this.campo.findCampaignByName("#ai"));
 	}
 
 }
