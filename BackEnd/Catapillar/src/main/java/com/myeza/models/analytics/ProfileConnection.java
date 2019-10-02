@@ -2,18 +2,28 @@ package com.myeza.models.analytics;
 
 import javax.validation.constraints.NotNull;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import com.myeza.models.Profile;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+
+@Document
 @Data
-@AllArgsConstructor
 public class ProfileConnection {
 
+	@Id
+	private String id;
+	
+	@DBRef
 	@NotNull
 	private final Profile endOne;
 
+	@DBRef
 	@NotNull
 	private final Profile endTwo;
 

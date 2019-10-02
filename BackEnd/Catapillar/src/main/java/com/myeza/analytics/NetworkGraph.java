@@ -26,53 +26,56 @@ public class NetworkGraph {
 	CampaignService campaignService;
 
 	public Set<ProfileConnection> getProfileConnections() {
-		
+
 		Set<ProfileConnection> set = new HashSet<>(40);
 		profileService.findAll().forEach(prof -> {
-				profileService.findProfileCampaigns(prof.getId()).forEach(camp -> {
-				camp.getOwners().forEach(camps -> {
-						if(!camps.getId().equals(prof.getId()))
-								set.add(new ProfileConnection(prof, camps));
+			profileService.findProfileCampaigns(prof.getId()).forEach(camp -> {
+				if (camp.getEngagements() > 10000) {
+					camp.getOwners().forEach(camps -> {
+						if (!camps.getId().equals(prof.getId()))
+							set.add(new ProfileConnection(prof, camps));
 						return;
 					});
+				}
 			});
 		});
-		
+
 		return set;
 	}
-	
-	public Set<CampaignProfileConnection> getCampaignProfileConnections(){
+
+	public Set<CampaignProfileConnection> getCampaignProfileConnections() {
 		Set<CampaignProfileConnection> connections = new HashSet<>(14000);
-		
+
 		this.profileService.findAll().forEach(profile -> {
 			this.profileService.findProfileCampaigns(profile.getId()).forEach(campaign -> {
-				connections.add(new CampaignProfileConnection(campaign, profile));
+				if (campaign.getEngagements() > 10000) {
+					connections.add(new CampaignProfileConnection(campaign, profile));
+				}
 			});
 		});
-		
-		
+
 		return connections;
 	}
 
-	
 	/**
 	 * Expensive and say nothing about the profiles.. brands
+	 * 
 	 * @deprecated
 	 * @return
 	 */
 	public Set<CampaignConnection> getCampaignConnections() {
 		Set<CampaignConnection> connections = new HashSet<>(20000);
-		
+
 		this.profileService.findAll().forEach(profile -> {
 			this.profileService.findProfileCampaigns(profile.getId()).forEach(campaign -> {
-				for(Campaign camp: this.profileService.findProfileCampaigns(profile.getId())) {
-					if(!camp.getId().equals(campaign.getId())) {
+				for (Campaign camp : this.profileService.findProfileCampaigns(profile.getId())) {
+					if (!camp.getId().equals(campaign.getId())) {
 						connections.add(new CampaignConnection(campaign, camp));
 					}
 				}
 			});
 		});
-		
+
 		return connections;
 	}
 

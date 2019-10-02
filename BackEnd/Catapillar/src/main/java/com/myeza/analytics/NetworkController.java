@@ -1,5 +1,6 @@
 package com.myeza.analytics;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.myeza.models.analytics.CampaignConnection;
 import com.myeza.models.analytics.CampaignProfileConnection;
 import com.myeza.models.analytics.ProfileConnection;
+import com.myeza.repositories.analytics.CampaignProfileConnectionRepository;
+import com.myeza.repositories.analytics.ProfileConnectionRepository;
 
 @RequestMapping(path = "/network", produces = "application/json")
 @RestController
@@ -19,16 +22,30 @@ public class NetworkController {
 
 	@Autowired
 	NetworkGraph network;
+	
+	@Autowired
+	ProfileConnectionRepository profileConnects;
+	
+	@Autowired
+	CampaignProfileConnectionRepository overviewConnects;
 
 	@GetMapping("/profiles")
-	public Set<ProfileConnection> getProfileConnections() {
-		return network.getProfileConnections();
+	public List<ProfileConnection> getProfileConnections() {
+		return this.profileConnects.findAll();
 	}
 	
 	@GetMapping("/overview")
-	public Set<CampaignProfileConnection> getConnections(){
-		return network.getCampaignProfileConnections();
+	public List<CampaignProfileConnection> getConnections(){
+		return this.overviewConnects.findAll();
 	}
+	
+	@GetMapping("/initialize")
+	public void initialize() {
+		this.profileConnects.saveAll(this.network.getProfileConnections());
+		this.overviewConnects.saveAll(this.network.getCampaignProfileConnections());
+		
+	}
+	
 	
 	@GetMapping("/campaigns")
 	@Deprecated
