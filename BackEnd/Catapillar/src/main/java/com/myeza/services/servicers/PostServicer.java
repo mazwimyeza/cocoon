@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.myeza.models.Campaign;
 import com.myeza.models.Post;
 import com.myeza.repositories.PostRepository;
 import com.myeza.services.PostService;
@@ -50,6 +51,12 @@ public class PostServicer implements PostService {
 	public List<Post> findAllByDateBetween(LocalDate date1, LocalDate date2) {
 		
 		return postRepo.findAllByCreatedAtBetween(date1, date2);
+	}
+
+	@Override
+	public List<Post> findCampaignPost(Campaign campaign) {
+		// TODO Auto-generated method stub
+		return postRepo.findByCampaigns(campaign);
 	}
 	
 	

@@ -1,23 +1,21 @@
-package com.myeza.analytics;
+package com.myeza.services.servicers.analytics;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myeza.models.Campaign;
-import com.myeza.models.Profile;
 import com.myeza.models.analytics.CampaignConnection;
 import com.myeza.models.analytics.CampaignProfileConnection;
 import com.myeza.models.analytics.ProfileConnection;
 import com.myeza.services.CampaignService;
 import com.myeza.services.ProfileService;
+import com.myeza.services.analytics.NetworkGraphService;
 
 @Service
-public class NetworkGraph {
+public class NetworkGraphServicer implements NetworkGraphService{
 
 	@Autowired
 	ProfileService profileService;
@@ -58,7 +56,7 @@ public class NetworkGraph {
 	}
 
 	/**
-	 * Expensive and say nothing about the profiles.. brands
+	 * Expensive and says nothing about the profiles.. brands
 	 * 
 	 * @deprecated
 	 * @return

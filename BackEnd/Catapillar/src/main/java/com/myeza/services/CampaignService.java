@@ -30,6 +30,8 @@ public interface CampaignService {
 
 	// TODO insert post services
 
+	List<Post> getCampaignPosts(Campaign campaign);
+	
 	List<Post> getCampaignPostsByEndorsement(String campaignID);
 
 	List<Post> getCampaignPostsByEngagement(String campaignId);

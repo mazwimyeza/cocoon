@@ -125,6 +125,12 @@ public class CampaignServicer implements CampaignService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Post> getCampaignPosts(Campaign campaign) {
+		// TODO Auto-generated method stub
+		return this.postService.findCampaignPost(campaign);
+	}
 	
 	
 

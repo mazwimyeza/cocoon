@@ -20,7 +20,8 @@ import { CampaignDetailComponent } from './components/details/campaign-detail/ca
 import { HighchartsChartModule } from 'highcharts-angular';
 import { CampaignSentimentComponent } from './components/details/views/campaign-sentiment/campaign-sentiment.component';
 import { OverviewComponent } from './components/network/overview/overview.component';
-import { ProfilesComponent } from './components/network/profiles/profiles.component'
+import { ProfilesComponent } from './components/network/profiles/profiles.component';
+import { ProfileSentimentComponent } from './components/details/views/profile-sentiment/profile-sentiment.component'
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ProfilesComponent } from './components/network/profiles/profiles.compon
     CampaignDetailComponent,
     CampaignSentimentComponent,
     OverviewComponent,
-    ProfilesComponent
+    ProfilesComponent,
+    ProfileSentimentComponent
   ],
   imports: [
     BrowserModule,

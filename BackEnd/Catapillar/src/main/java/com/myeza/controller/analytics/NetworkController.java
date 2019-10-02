@@ -1,4 +1,4 @@
-package com.myeza.analytics;
+package com.myeza.controller.analytics;
 
 import java.util.List;
 import java.util.Set;
@@ -14,6 +14,7 @@ import com.myeza.models.analytics.CampaignProfileConnection;
 import com.myeza.models.analytics.ProfileConnection;
 import com.myeza.repositories.analytics.CampaignProfileConnectionRepository;
 import com.myeza.repositories.analytics.ProfileConnectionRepository;
+import com.myeza.services.analytics.NetworkGraphService;
 
 @RequestMapping(path = "/network", produces = "application/json")
 @RestController
@@ -21,11 +22,11 @@ import com.myeza.repositories.analytics.ProfileConnectionRepository;
 public class NetworkController {
 
 	@Autowired
-	NetworkGraph network;
-	
+	NetworkGraphService network;
+
 	@Autowired
 	ProfileConnectionRepository profileConnects;
-	
+
 	@Autowired
 	CampaignProfileConnectionRepository overviewConnects;
 
@@ -33,23 +34,22 @@ public class NetworkController {
 	public List<ProfileConnection> getProfileConnections() {
 		return this.profileConnects.findAll();
 	}
-	
+
 	@GetMapping("/overview")
-	public List<CampaignProfileConnection> getConnections(){
+	public List<CampaignProfileConnection> getConnections() {
 		return this.overviewConnects.findAll();
 	}
-	
+
 	@GetMapping("/initialize")
 	public void initialize() {
 		this.profileConnects.saveAll(this.network.getProfileConnections());
 		this.overviewConnects.saveAll(this.network.getCampaignProfileConnections());
-		
+
 	}
-	
-	
+
 	@GetMapping("/campaigns")
 	@Deprecated
-	public Set<CampaignConnection> getCampaignConnections(){
+	public Set<CampaignConnection> getCampaignConnections() {
 		return network.getCampaignConnections();
 	}
 
